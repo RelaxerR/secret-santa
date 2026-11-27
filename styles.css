@@ -12,3 +12,5 @@ label{display:grid;gap:8px;font-size:13px;font-weight:600;color:var(--muted)}inp
 #controls{max-width:352px;margin:0 auto 20px;padding:10px 24px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-top:1px solid #d9e2db}#controls small{width:100%}#controls select{height:36px}dialog{width:min(90vw,380px);border:0;border-radius:20px;padding:26px;background:var(--paper);color:var(--ink)}dialog p{margin:16px 0;line-height:1.5}dialog button{width:100%;margin-top:8px}dialog::backdrop{background:#162d2966}
 @media(max-width:680px){.top{padding:18px 24px}.hero{grid-template-columns:1fr;padding:30px 24px;gap:32px}.hero img{max-height:220px}.intro{margin:14px 0 24px}.hero figure{max-height:300px}.hero button{width:100%}}
 @media(min-width:700px){body:has(#phone:not([hidden])){padding-top:28px;background:#e5ebe6}#phone,#controls{background:var(--paper)}#phone{border-radius:24px 24px 0 0}#controls{border-radius:0 0 24px 24px}}
+
+.privacy-note{font-size:13px;color:var(--muted);line-height:1.45;margin:10px 0}.privacy-note+.photo-pick{margin:18px 0 24px}.plain.danger{color:#a93640}.destructive{background:#a93640}
