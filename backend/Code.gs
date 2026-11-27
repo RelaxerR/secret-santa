@@ -3,8 +3,12 @@ function doGet() {
   return HtmlService.createHtmlOutputFromFile('Status').setTitle('Тайный Санта — проверка сервиса');
 }
 
-/** Only public RPC endpoint. Rooms and sensitive data are not exposed yet. */
+/** Public diagnostic RPC. */
 function serviceStatus() {
+  return admitted_(function () { return { status: 'ready', version: '1.0.0' }; });
+}
+
+function admitted_(operation) {
   try {
     const properties = PropertiesService.getScriptProperties();
     if (properties.getProperty('SERVICE_ENABLED') !== 'true') {
@@ -23,9 +27,10 @@ function serviceStatus() {
         decision.code === 'DAILY_LIMIT' ? 'Лимит запросов на сегодня исчерпан. Возвращайтесь завтра (после 00:00 UTC).' : 'Слишком много запросов. Подождите немного.',
         decision.retryAfterSeconds);
       properties.setProperty('REQUEST_BUDGET_V1', JSON.stringify(decision.state));
-      return { ok: true, data: { status: 'ready', version: '0.1.0' } };
+      return { ok: true, data: operation(properties, now) };
     } finally { lock.releaseLock(); }
   } catch (error) {
+    if (error && error.santaFailure) return error.santaFailure;
     // Never return Google errors, identifiers, stack traces or user data to clients.
     if (/quota|too many times|limit exceeded|service invoked/i.test(String(error && error.message))) {
       return failure_('QUOTA_EXCEEDED', 'Квота Google временно исчерпана. Попробуйте позже.');
