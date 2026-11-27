@@ -13,8 +13,9 @@
 <label>Ваше имя<input name="name" required maxlength="80"></label>
 <label>Фото (обязательно)<input required type="file" name="avatar" accept="image/jpeg,image/png,image/webp"></label>
 <small>JPEG, PNG или WebP до 2 МБ.</small>
-<fieldset><legend>Мои пожелания</legend><div class="wishes"></div><button type="button" class="add">Добавить пожелание</button></fieldset>
-<button>Создать</button></form>
+<fieldset class="wishlist"><legend>Мои пожелания</legend>
+<div class="wishes" tabindex="0" role="region" aria-label="Список пожеланий"></div>
+<div class="wish-actions"><button type="button" class="add">Добавить пожелание</button><button>Создать</button></div></fieldset></form>
 <div id="room" hidden><h2 id="room-title"></h2>
 <label>Посмотреть от лица<select id="role"><option value="host">Организатор</option><option value="guest">Новый участник</option></select></label>
 <div id="host"><h3>Участники</h3><ul id="roster"></ul><p id="draw-help"></p><button id="draw" type="button">Провести жеребьёвку</button></div>
@@ -22,11 +23,14 @@
 <label>Ваше имя<input name="name" required maxlength="80"></label>
 <label>Фото (обязательно)<input required type="file" name="avatar" accept="image/jpeg,image/png,image/webp"></label>
 <small>JPEG, PNG или WebP до 2 МБ.</small>
-<fieldset><legend>Мои пожелания</legend><div class="wishes"></div><button type="button" class="add">Добавить пожелание</button></fieldset>
-<button>Вступить</button></form>
+<fieldset class="wishlist"><legend>Мои пожелания</legend>
+<div class="wishes" tabindex="0" role="region" aria-label="Список пожеланий"></div>
+<div class="wish-actions"><button type="button" class="add">Добавить пожелание</button><button>Вступить</button></div></fieldset></form>
 <div id="member" hidden><h3 id="member-name"></h3><img id="photo" alt="" hidden width="64" height="64">
-<form id="edit"><fieldset><legend>Мои пожелания</legend><div class="wishes"></div><button type="button" class="add">Добавить пожелание</button></fieldset><button>Сохранить пожелания</button></form>
+<form id="edit"><fieldset class="wishlist"><legend>Мои пожелания</legend>
+<div class="wishes" tabindex="0" role="region" aria-label="Список пожеланий"></div>
+<div class="wish-actions"><button type="button" class="add">Добавить пожелание</button><button>Сохранить пожелания</button></div></fieldset></form>
 <button id="reveal" type="button" hidden>Узнать, кому я дарю</button><div id="recipient"></div></div></div>
 <p role="status" id="notice"></p>
-<template id="wish-row"><div class="wish-row"><label>Пожелание<input name="wish" maxlength="2000" required></label><label>Ссылка (по желанию)<input name="url" type="url" placeholder="https://"></label><button type="button" class="remove">Удалить</button></div></template>
+<template id="wish-row"><div class="wish-row"><label>Название пожелания<input name="wish" maxlength="2000" required></label><label>Ссылка (по желанию)<input name="url" type="url" placeholder="https://"></label><button type="button" class="remove">Удалить</button></div></template>
 </main></body></html>

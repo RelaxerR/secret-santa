@@ -8,6 +8,33 @@ button { width: fit-content; cursor: pointer; }
 img { border-radius: 50%; object-fit: cover; }
 #recipient { white-space: pre-wrap; }
 
-fieldset { min-width: 0; padding: .8rem; border: 1px solid #bdc9be; }
-.wish-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: .5rem; align-items: end; margin: .5rem 0; }
+.wishlist { min-width: 0; margin: 0; padding: 0; border: 0; }
+.wishlist legend { padding: 0 0 .5rem; font-weight: 600; }
+.wishes {
+  display: grid;
+  gap: .65rem;
+  align-content: start;
+  height: clamp(10rem, 48dvh, 24rem);
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  padding: .2rem;
+}
+.wish-row {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: .5rem;
+  align-items: end;
+  padding: .75rem;
+  border: 1px solid #bdc9be;
+  border-radius: .65rem;
+  background: #fffdf6;
+}
 .wish-row label { margin: 0; }
+.wish-row .remove { grid-column: 1 / -1; justify-self: end; }
+.wish-actions {
+  display: grid;
+  gap: .4rem;
+  padding: .65rem .2rem max(.3rem, env(safe-area-inset-bottom));
+}
+.wish-actions button { width: 100%; min-height: 44px; }
