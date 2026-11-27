@@ -9,7 +9,12 @@
 <a href="./">← На главную</a>
 <h1>Тайный Санта</h1>
 <p>Демонстрация в одной вкладке. Введите вымышленные данные. Вы сможете переключаться между ролями. При перезагрузке комната исчезнет.</p>
-<form id="create"><h2>Создать комнату</h2><label>Название комнаты<input name="title" maxlength="120" required></label><button>Создать</button></form>
+<form id="create"><h2>Создать комнату</h2><label>Название комнаты<input name="title" maxlength="120" required></label><h3>Вы участвуете в обмене</h3>
+<label>Ваше имя<input name="name" required maxlength="80"></label>
+<label>Аватарка (по желанию)<input type="file" name="avatar" accept="image/jpeg,image/png,image/webp"></label>
+<small>JPEG, PNG или WebP до 2 МБ.</small>
+<label>Вишлист<textarea name="wishes" maxlength="2000" placeholder="Что вам было бы приятно получить?"></textarea></label>
+<button>Создать</button></form>
 <div id="room" hidden><h2 id="room-title"></h2>
 <label>Посмотреть от лица<select id="role"><option value="host">Организатор</option><option value="guest">Новый участник</option></select></label>
 <div id="host"><h3>Участники</h3><ul id="roster"></ul><p id="draw-help"></p><button id="draw" type="button">Провести жеребьёвку</button></div>

@@ -29,20 +29,16 @@ function render() {
     get('reveal').hidden = !assignments;
   }
 }
-get('create').onsubmit = e => {
-  e.preventDefault();
-  const title = e.target.elements.title.value.trim();
-  if (!title) { get('notice').textContent = 'Введите название комнаты.'; return; }
-  get('room-title').textContent = title;
-  get('create').hidden = true;
-  get('room').hidden = false;
-  render();
-};
 get('role').onchange = render;
-get('join').onsubmit = async e => {
+async function register(e) {
   e.preventDefault();
-  if (joining || assignments || get('role').value !== 'guest') return;
-  const fields = e.target.elements;
+  const form = e.currentTarget;
+  const creating = form.id === 'create';
+  if (joining || assignments) return;
+  if (creating ? participants.length > 0 : get('role').value !== 'guest') return;
+  const fields = form.elements;
+  const title = creating ? fields.title.value.trim() : '';
+  if (creating && !title) { get('notice').textContent = 'Введите название комнаты.'; return; }
   const name = fields.name.value.trim();
   if (!name) { get('notice').textContent = 'Введите имя.'; return; }
   const file = fields.avatar.files[0];
@@ -58,11 +54,18 @@ get('join').onsubmit = async e => {
       image.src = avatar;
       try { await image.decode(); } catch { throw new Error('Не удалось прочитать изображение.'); }
     }
-    const id = crypto.randomUUID();
+    const id = creating ? 'host' : crypto.randomUUID();
     participants.push({ id, name, avatar, wishes: fields.wishes.value.trim() });
-    get('role').add(new Option(name, id));
+    if (creating) {
+      get('room-title').textContent = title;
+      get('create').hidden = true;
+      get('room').hidden = false;
+      get('role').options[0].text = name + ' (организатор)';
+    } else {
+      get('role').add(new Option(name, id));
+    }
     get('role').value = id;
-    get('join').reset();
+    form.reset();
     render();
   } catch (error) {
     if (avatar) URL.revokeObjectURL(avatar);
@@ -71,7 +74,9 @@ get('join').onsubmit = async e => {
     joining = false;
     get('role').disabled = false;
   }
-};
+}
+get('create').onsubmit = register;
+get('join').onsubmit = register;
 get('edit').onsubmit = e => {
   e.preventDefault();
   const person = participants.find(p => p.id === get('role').value);
