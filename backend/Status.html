@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="font:18px system-ui;max-width:620px;margin:48px auto;padding:24px">
+<h1>Тайный Санта</h1>
+<p>Проверка доступности сервиса. Комнаты и жеребьёвка пока не реализованы.</p>
+<button id="check" type="button">Проверить</button>
+<p id="status" role="status">Нажмите кнопку для проверки.</p>
+<script>
+const button = document.getElementById('check');
+const status = document.getElementById('status');
+const unavailable = 'Сервис не ответил. Возможно, исчерпана квота Google или возникла проблема со связью. Попробуйте позже.';
+button.addEventListener('click', () => {
+  button.disabled = true;
+  status.textContent = 'Проверяем…';
+  let finished = false;
+  const finish = (message) => {
+    if (finished) return;
+    finished = true;
+    clearTimeout(timer);
+    status.textContent = message;
+    // No automatic retries. Prevent accidental rapid repeated checks.
+    setTimeout(() => { button.disabled = false; }, 5000);
+  };
+  const timer = setTimeout(() => finish(unavailable), 20000);
+  google.script.run
+    .withSuccessHandler(result => finish(result && result.ok ? 'Сервис доступен.' : result?.error?.message || unavailable))
+    .withFailureHandler(() => finish(unavailable))
+    .serviceStatus();
+});
+</script></body></html>

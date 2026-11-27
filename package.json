@@ -1,0 +1,17 @@
+{
+  "name": "secret-santa",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Secret Santa on GitHub Pages and Google Apps Script",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node --test",
+    "verify": "node scripts/verify.mjs"
+  }
+}
