@@ -30,6 +30,7 @@ function show(next) {
   $('switch-wrap').hidden = online || next !== 'room';
   if (online) {
     $('refresh').hidden = next !== 'room';
+    $('delete-room').hidden = next !== 'room' || !isHost();
     $('personal').hidden = !['room','result'].includes(next);
   }
   if (next === 'room') renderRoom();
@@ -306,3 +307,18 @@ if (online) {
   if (location.hash) run(enter);
   window.addEventListener('hashchange', () => location.reload());
 }
+
+button('delete-room', () => {
+  if (online && page === 'room' && isHost()) $('deletion').showModal();
+});
+button('keep-room', () => $('deletion').close());
+button('confirm-delete', () => {
+  if (!online || page !== 'room' || !isHost()) return;
+  $('deletion').close();
+  run(async () => {
+    const result = await api('delete', credentials());
+    if (!result?.deleted) throw new Error('Сервис не подтвердил удаление комнаты.');
+    history.replaceState(null, '', location.pathname + location.search);
+    location.reload();
+  });
+});
