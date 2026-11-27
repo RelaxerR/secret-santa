@@ -7,3 +7,7 @@ textarea { min-height: 5rem; }
 button { width: fit-content; cursor: pointer; }
 img { border-radius: 50%; object-fit: cover; }
 #recipient { white-space: pre-wrap; }
+
+fieldset { min-width: 0; padding: .8rem; border: 1px solid #bdc9be; }
+.wish-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: .5rem; align-items: end; margin: .5rem 0; }
+.wish-row label { margin: 0; }

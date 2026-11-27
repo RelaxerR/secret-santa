@@ -11,21 +11,22 @@
 <p>Демонстрация в одной вкладке. Введите вымышленные данные. Вы сможете переключаться между ролями. При перезагрузке комната исчезнет.</p>
 <form id="create"><h2>Создать комнату</h2><label>Название комнаты<input name="title" maxlength="120" required></label><h3>Вы участвуете в обмене</h3>
 <label>Ваше имя<input name="name" required maxlength="80"></label>
-<label>Аватарка (по желанию)<input type="file" name="avatar" accept="image/jpeg,image/png,image/webp"></label>
+<label>Фото (обязательно)<input required type="file" name="avatar" accept="image/jpeg,image/png,image/webp"></label>
 <small>JPEG, PNG или WebP до 2 МБ.</small>
-<label>Вишлист<textarea name="wishes" maxlength="2000" placeholder="Что вам было бы приятно получить?"></textarea></label>
+<fieldset><legend>Мои пожелания</legend><div class="wishes"></div><button type="button" class="add">Добавить пожелание</button></fieldset>
 <button>Создать</button></form>
 <div id="room" hidden><h2 id="room-title"></h2>
 <label>Посмотреть от лица<select id="role"><option value="host">Организатор</option><option value="guest">Новый участник</option></select></label>
 <div id="host"><h3>Участники</h3><ul id="roster"></ul><p id="draw-help"></p><button id="draw" type="button">Провести жеребьёвку</button></div>
 <form id="join" hidden><h3>Вступить в комнату</h3>
 <label>Ваше имя<input name="name" required maxlength="80"></label>
-<label>Аватарка (по желанию)<input type="file" name="avatar" accept="image/jpeg,image/png,image/webp"></label>
+<label>Фото (обязательно)<input required type="file" name="avatar" accept="image/jpeg,image/png,image/webp"></label>
 <small>JPEG, PNG или WebP до 2 МБ.</small>
-<label>Вишлист<textarea name="wishes" maxlength="2000" placeholder="Что вам было бы приятно получить?"></textarea></label>
+<fieldset><legend>Мои пожелания</legend><div class="wishes"></div><button type="button" class="add">Добавить пожелание</button></fieldset>
 <button>Вступить</button></form>
 <div id="member" hidden><h3 id="member-name"></h3><img id="photo" alt="" hidden width="64" height="64">
-<form id="edit"><label>Мой вишлист<textarea name="wishes" maxlength="2000"></textarea></label><button>Сохранить пожелания</button></form>
-<button id="reveal" type="button" hidden>Узнать, кому я дарю</button><p id="recipient"></p></div></div>
+<form id="edit"><fieldset><legend>Мои пожелания</legend><div class="wishes"></div><button type="button" class="add">Добавить пожелание</button></fieldset><button>Сохранить пожелания</button></form>
+<button id="reveal" type="button" hidden>Узнать, кому я дарю</button><div id="recipient"></div></div></div>
 <p role="status" id="notice"></p>
+<template id="wish-row"><div class="wish-row"><label>Пожелание<input name="wish" maxlength="2000" required></label><label>Ссылка (по желанию)<input name="url" type="url" placeholder="https://"></label><button type="button" class="remove">Удалить</button></div></template>
 </main></body></html>
