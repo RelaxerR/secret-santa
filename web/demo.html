@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Тайный Санта · Прототип</title><link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./demo.css"><script type="module" src="./demo.js"></script>
+</head>
+<body><main>
+<a href="./">← На главную</a>
+<h1>Тайный Санта</h1>
+<p>Демонстрация в одной вкладке. Введите вымышленные данные. Вы сможете переключаться между ролями. При перезагрузке комната исчезнет.</p>
+<form id="create"><h2>Создать комнату</h2><label>Название комнаты<input name="title" maxlength="120" required></label><button>Создать</button></form>
+<div id="room" hidden><h2 id="room-title"></h2>
+<label>Посмотреть от лица<select id="role"><option value="host">Организатор</option><option value="guest">Новый участник</option></select></label>
+<div id="host"><h3>Участники</h3><ul id="roster"></ul><p id="draw-help"></p><button id="draw" type="button">Провести жеребьёвку</button></div>
+<form id="join" hidden><h3>Вступить в комнату</h3>
+<label>Ваше имя<input name="name" required maxlength="80"></label>
+<label>Аватарка (по желанию)<input type="file" name="avatar" accept="image/jpeg,image/png,image/webp"></label>
+<small>JPEG, PNG или WebP до 2 МБ.</small>
+<label>Вишлист<textarea name="wishes" maxlength="2000" placeholder="Что вам было бы приятно получить?"></textarea></label>
+<button>Вступить</button></form>
+<div id="member" hidden><h3 id="member-name"></h3><img id="photo" alt="" hidden width="64" height="64">
+<form id="edit"><label>Мой вишлист<textarea name="wishes" maxlength="2000"></textarea></label><button>Сохранить пожелания</button></form>
+<button id="reveal" type="button" hidden>Узнать, кому я дарю</button><p id="recipient"></p></div></div>
+<p role="status" id="notice"></p>
+</main></body></html>
