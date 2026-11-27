@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://*.googleusercontent.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Тайный Санта</title><link rel="stylesheet" href="./styles.css"><script type="module" src="./app.js"></script></head>
+<body><header class="top"><span>Тайный Санта</span><button id="how" class="plain">Как это работает</button></header>
+<main>
+<section id="home" class="hero"><div><p class="eyebrow">Обмен подарками</p><h1>Тайный Санта</h1><p class="intro">Соберите друзей, напишите пожелания<br> и узнайте, кому готовить подарок.</p><button data-page="create">Создать комнату</button></div><figure><img src="./assets/ornament.svg" alt="Новогодний шар"></figure></section>
+<dialog id="guide"><h2>Как это работает</h2><p>Создайте комнату, добавьте участников и их пожелания. Когда все готовы, проведите жеребьёвку.</p><p>Пришлите друзьям приглашение, а личную ссылку сохраните для себя. <a href="./demo.html">Попробовать демо</a></p><button id="close-guide">Понятно</button></dialog>
+<article id="phone" hidden><div class="brand">Тайный Санта</div>
+<form id="create" class="screen" hidden><h2>Создать комнату</h2><div class="body settings">
+<label>Название<input name="title" placeholder="Наш Новый год" maxlength="120" required></label>
+<label>Бюджет подарка<input name="budget" placeholder="До 2 000 ₽" maxlength="80" required></label>
+<label>Дата обмена<input name="date" type="date" required></label></div>
+<footer><button>Мой профиль</button></footer></form>
+<form id="profile" class="screen" hidden><h2>Мой профиль</h2><div class="body"><p class="room-label"></p>
+<label class="photo-pick"><span id="preview">+</span><span><b>Добавить фото</b><small>Обязательное фото</small></span><input name="avatar" type="file" required accept="image/jpeg,image/png,image/webp"></label>
+<label>Как вас зовут?<input name="name" placeholder="Ваше имя" maxlength="80" required></label></div><footer><button>К пожеланиям</button></footer></form>
+<form id="wishlist" class="screen" hidden><h2>Мой вишлист</h2><p class="description">Добавьте хотя бы одно пожелание.</p><div class="wishes" aria-label="Список пожеланий" role="region" tabindex="0"></div><footer><button type="button" class="secondary" id="add">Добавить пожелание</button><button>Сохранить</button></footer></form>
+<section id="room" class="screen" hidden><h2>Комната</h2><div class="body"><h3 class="room-title"></h3><p id="facts"></p><button class="secondary" id="invite">Пригласить участника</button><h4 id="count"></h4><ul id="roster"></ul></div><footer><button id="start-draw">Начать жеребьёвку</button><button id="show-result" hidden>Ваш получатель</button></footer></section>
+<section id="confirm" class="screen" hidden><h2>Жеребьёвка</h2><div class="body"><p class="room-label"></p><div class="confirm-card"><h3>Распределить<br>подарки?</h3><p id="confirm-text"></p></div></div><footer><button id="draw">Распределить</button><button class="secondary" data-page="room">Вернуться в комнату</button></footer></section>
+<section id="result" class="screen" hidden><h2>Ваш получатель</h2><div class="body"><div class="prize"><div id="initial"></div><h3 id="to-name"></h3><span>Вы готовите подарок</span></div><h4>Вишлист получателя</h4><ul id="gift-list"></ul></div><footer><a id="gift-link" class="button secondary" target="_blank" rel="noopener noreferrer">Открыть ссылку на подарок</a></footer></section>
+<p id="notice" role="alert" hidden></p></article>
+<aside id="controls" hidden><button class="plain" id="return">Назад</button><button class="plain" id="edit-wishes" hidden>Мой вишлист</button><label id="switch-wrap" hidden>Демо-роль<select id="switch"></select></label><button class="plain" id="refresh" hidden>Обновить комнату</button><button class="plain" id="personal" hidden>Моя личная ссылка</button></aside>
+<dialog id="invitation"><h2 id="link-title"></h2><p id="link-hint"></p><label>Ссылка<input id="share-url" type="text" readonly></label><button id="copy">Скопировать</button><button class="secondary" id="cancel-invite">Закрыть</button></dialog>
+<p id="home-error" role="alert" hidden></p><button id="retry-entry" class="plain" hidden>Повторить загрузку</button>
+<template id="row-template"><div class="wish-row"><label>Название пожелания<input name="wish" required maxlength="2000" placeholder="Что вам подарить?"></label><label>Ссылка — необязательно<input name="url" maxlength="2048" type="url" placeholder="Вставьте ссылку на подарок"></label><button class="remove" type="button" aria-label="Удалить пожелание">×</button></div></template>
+</main></body></html>
